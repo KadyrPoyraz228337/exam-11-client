@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, Button, Form} from "reactstrap";
 import FormField from "../UI/formField/formField";
 import {useDispatch, useSelector} from "react-redux";
-import {registerUser} from "../../store/actions/users";
+import {loginUserInit, registerUser} from "../../store/actions/users";
 
 const RegisterPage = () => {
   const initialState = {
     username: '',
     password: '',
-    email: ''
+    displayName: '',
+    number: ''
   };
 
   const [userInfo, setUser] = useState(initialState);
@@ -20,6 +21,10 @@ const RegisterPage = () => {
     e.preventDefault();
     await dispatch(registerUser(userInfo));
   };
+
+  useEffect(() => {
+    dispatch(loginUserInit())
+  }, [dispatch]);
   return (
     <div>
       <Form onSubmit={onSubmit}>
@@ -30,15 +35,6 @@ const RegisterPage = () => {
             name='username'
             placeholder='enter your username'
             onChange={inputChangeHandler}
-            required
-          />
-          <FormField
-            type='email'
-            title='Email'
-            name='email'
-            placeholder='enter your email'
-            onChange={inputChangeHandler}
-            required
           />
           <FormField
             type='password'
@@ -46,10 +42,23 @@ const RegisterPage = () => {
             name='password'
             placeholder='enter your password'
             onChange={inputChangeHandler}
-            required
+          />
+          <FormField
+            type='text'
+            title='Display name'
+            name='displayName'
+            placeholder='enter your display name'
+            onChange={inputChangeHandler}
+          />
+          <FormField
+            type='text'
+            title='Phone number'
+            name='number'
+            placeholder='enter your display phone number'
+            onChange={inputChangeHandler}
           />
           {error && <Alert color="danger">
-            имя или электронная почта уже заняты
+            {error}
           </Alert>}
           <Button>Register</Button>
         </div>
