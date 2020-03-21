@@ -12,7 +12,7 @@ const AuthToolBar = () => {
     <>
       <NavbarText className='mr-3'>Hello, <b>{user.user.username}</b>!</NavbarText>
       <NavItem>
-        <NavLink tag={RouterNavLink} to='/new' exact>Add new post</NavLink>
+        <NavLink tag={RouterNavLink} to='/new' exact>Add new thing</NavLink>
       </NavItem>
       <Button color='danger' onClick={() => dispatch(logoutUser())}>logout</Button>
     </>

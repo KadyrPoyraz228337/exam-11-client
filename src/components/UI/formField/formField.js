@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, FormGroup, Input, Label} from "reactstrap";
 
 const FormField = (
-  {name, type, placeholder, onChange, title, value, required}
+  {name, type, placeholder, onChange, title, value, required, className}
 ) => {
   return (
     <FormGroup row>
@@ -16,6 +16,7 @@ const FormField = (
           onChange={onChange}
           value={value}
           required={required}
+          className={className}
         />
       </Col>
     </FormGroup>
